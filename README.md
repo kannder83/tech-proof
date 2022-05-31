@@ -71,3 +71,9 @@ Se puede seleccionar un registro para entrar a la vista de detalle.
 Se puede elimintar el registro.
 
 Se puede editar el registro.
+
+## API
+
+Para consumir la API se realiza desde la URL:
+
+[http://localhost:8000/api/proof/](http://localhost:8000/api/proof/)
