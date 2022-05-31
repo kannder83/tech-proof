@@ -1,0 +1,15 @@
+input[type=text],input[type=email]{
+    padding: 0.5rem 0.3rem;
+    margin-bottom: 0.5rem;
+    border-radius: .5rem;
+    background-color: #e3e3e3;
+    outline: none;
+}
+
+textarea{
+    padding: 0.5rem 0.3rem;
+    margin-bottom: 0.5rem;
+    border-radius: .5rem;
+    background-color: #e3e3e3;
+    outline: none;
+}

@@ -1,0 +1,30 @@
+{% load static %}
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/proof.css' %}" />
+  </head>
+  <body class="w-full min-h-screen p-4">
+    <div class="w-full p-4 mb-2 bg-yellow-100 rounded-xl">
+      <h1 class="uppercase text-center text-3xl">
+        <a href="/">App Registro</a>
+      </h1>
+      <div class="w-full">
+        <a
+          href="{% url 'register_new' %}"
+          class="px-4 py-2 bg-yellow-200 rounded-xl hover:shadow-md hover:bg-yellow-300"
+          ><span class="">➕</span> Nuevo Registro</a
+        >
+      </div>
+    </div>
+    <div class="w-full">{% block content %} {% endblock %}</div>
+  </body>
+</html>

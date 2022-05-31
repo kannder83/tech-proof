@@ -1,0 +1,21 @@
+{% extends 'proof/base.html' %} {% block content %}
+<div class="w-full p-4 mb-2 bg-green-50 rounded-xl">
+  <h2>Formulario de Registro</h2>
+</div>
+<form method="POST" class="w-full p-4 bg-gray-100 rounded-xl">
+  {% csrf_token %} {{ form.as_p }}
+  <button
+    type="submit"
+    class="px-4 py-2 my-2 rounded-xl bg-blue-100 hover:shadow-md hover:bg-blue-200"
+  >
+    Guardar
+  </button>
+</form>
+<div class="w-full p-4 mb-2 bg-blue-300/40 rounded-xl">
+  <a
+    class="px-4 py-2 rounded-xl bg-green-50 hover:bg-green-100 hover:shadow-md"
+    href="/"
+    ><span>🏡</span> Inicio</a
+  >
+</div>
+{% endblock %}

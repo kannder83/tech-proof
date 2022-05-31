@@ -1,0 +1,18 @@
+{% extends 'proof/base.html' %} {% block content %}
+<div class="w-full p-4 bg-blue-300 rounded-xl">
+  <h2>Lista de Usuarios</h2>
+</div>
+{% for register in registers %}
+<dir class="w-full p-1">
+  <div class="w-full p-4 bg-blue-50 rounded-xl">
+    <a
+      href="{% url 'register_detail' pk=register.pk %}"
+      class="px-4 py-1 bg-blue-200 rounded-md hover:bg-blue-300"
+      >Identificador: {{ register.id }}</a
+    >
+    <p>Nombre: {{ register.first_name }}</p>
+    <p>Apellido: {{ register.last_name }}</p>
+    <p>Email: {{ register.email }}</p>
+  </div>
+</dir>
+{% endfor %} {% endblock %}
