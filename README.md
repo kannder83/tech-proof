@@ -1,16 +1,28 @@
-Procedimiento:
+# Procedimiento:
+
+Tener Python y Docker instalado.
+
+## Tecnologias:
+
+- Python
+- Docker
+- Framework django
+- PostgresSQL
+
+## Preparación:
+
+Correr Entorno Virutal:
+
+`python3 -m venv venv`
+
+Instalar dependencias:
 
 `pip install -r requirements.txt`
 
-Instalacion django:
+Configuracion archivo .env en la ruta mysite/.env
 
-- Creación de projecto
-
-`django-admin startproject mysite . `
-
-- Configuracion archivo .env
-
-SECRET_KEY=
+```py
+SECRET_KEY=django-insecure-7*-ow8t@iau7%%9s!*wou_eg&p5(e(9m4v9$\_eiw9iguni@zny
 POSTGRES_HOST_AUTH_METHOD=trust
 POSTGRESQL_NAME=postgres
 POSTGRESQL_USER=postgres
@@ -18,65 +30,44 @@ POSTGRESQL_PASS=postgres123
 POSTGRESQL_HOST=postgres
 POSTGRESQL_PORT=5432
 DEBUG=True
-
-- Configuración: settings.py
-
-Mover archivo de seguridad:
-
-SECRET_KEY = env('SECRET_KEY')
-
-TIME_ZONE = 'America/Bogota'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-- Configurar: Base de datos
-
-```py
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('POSTGRESQL_NAME'),
-        'USER': env('POSTGRESQL_USER'),
-        'PASSWORD': env('POSTGRESQL_PASS'),
-        'HOST': env('POSTGRESQL_HOST'),
-        'PORT': env('POSTGRESQL_PORT'),
-    }
-}
 ```
 
-commands:
+## Docker
 
-Inicializar el Docker:
+Realizar build de docker:
+
+`docker-compose -f dev_docker.yml build`
+
+Subir las imagenes de docker:
+
+`docker-compose -f dev_docker.yml up`
 
 Correr los siguientes comandos:
 
-docker exec -it dev_django_tech bash
+`docker exec -it dev_django_tech bash`
 
-python manage.py makemigrations
+Al ingresar al contenedor ejecutar:
 
-python manage.py migrate
+`python manage.py makemigrations`
 
-python manage.py createsuperuser
+`python manage.py migrate`
 
-# Crear aplicación:
+## Aplicación:
 
-```py
-python manage.py startapp proof
-```
+Ingresar al localhost:
 
-Agregar en settings.py las siguientes lineas:
+[http://localhost:8000/](http://localhost:8000/)
 
-```py
-INSTALLED_APPS = [
-    "proof.apps.ProofConfig",
-    'rest_framework',
-]
-```
+En la página de inicio se tiene la opcion para visualizar cada uno de los registros.
 
-# Creacion de los modelos:
+Se tiene la opción de crear un nuevo registro.
 
-Agregar las tablas del modelo
+[Nuevo Registro](http://localhost:8000/register/new)
 
-```py
-python manage.py makemigrations proof
-```
+Se puede seleccionar un registro para entrar a la vista de detalle.
+
+### Detalle:
+
+Se puede elimintar el registro.
+
+Se puede editar el registro.
