@@ -1,7 +1,15 @@
-from datetime import timezone
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Register
 from .forms import RegisterForm
+
+
+from rest_framework import viewsets
+from django.http import Http404
+from rest_framework import status
+from rest_framework.response import Response
+
+# Clase 'RegisterSerializer'
+from .serializers import RegisterSerializer
 
 # Create your views here.
 
@@ -55,3 +63,9 @@ def register_delete(request, pk):
     return render(request, 'proof/register_delete.html', {
         'msg': f'El registro con id {pk} fue eleminado.'
     })
+
+
+class RegisterViewSet(viewsets.ModelViewSet):
+
+    queryset = Register.objects.all().order_by('id')
+    serializer_class = RegisterSerializer

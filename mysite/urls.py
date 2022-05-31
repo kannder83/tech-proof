@@ -16,7 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework.routers import DefaultRouter
+from proof import views as proof_views
+
+router = DefaultRouter()
+router.register('proof', proof_views.RegisterViewSet, basename='proof')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('proof.urls')),
+    path('api/', include(router.urls)),
 ]
