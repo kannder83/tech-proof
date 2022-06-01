@@ -15,11 +15,11 @@
   <body class="w-full min-h-screen p-4">
     <div class="w-full p-4 mb-2 bg-yellow-100 rounded-xl">
       <h1 class="uppercase text-center text-3xl">
-        <a href="/">App Registro</a>
+        <a href={% url 'proof:registers_list' %}>App Registro</a>
       </h1>
       <div class="w-full">
         <a
-          href="{% url 'register_new' %}"
+          href="{% url 'proof:register_new' %}"
           class="px-4 py-2 bg-yellow-200 rounded-xl hover:shadow-md hover:bg-yellow-300"
           ><span class="">➕</span> Nuevo Registro</a
         >

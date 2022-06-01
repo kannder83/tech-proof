@@ -18,17 +18,17 @@
 <div class="w-full p-4 mb-2 bg-blue-300/40 rounded-xl">
   <a
     class="px-4 py-2 rounded-xl bg-green-50 hover:bg-green-100 hover:shadow-md"
-    href="/"
+    href={% url 'proof:registers_list' %}
     ><span>🏡</span> Inicio</a
   >
   <a
     class="px-4 py-2 rounded-xl bg-blue-400 hover:bg-blue-500 hover:shadow-md"
-    href="{% url 'register_edit' pk=register.pk %}"
+    href="{% url 'proof:register_edit' pk=register.pk %}"
     ><span class="">📝</span> Editar Registro</a
   >
   <a
     class="px-4 py-2 rounded-xl bg-red-300 hover:bg-red-400 hover:shadow-md"
-    href="{% url 'register_delete' pk=register.pk %}"
+    href="{% url 'proof:register_delete' pk=register.pk %}"
     ><span class="">X</span> Eliminar Registro</a
   >
 </div>

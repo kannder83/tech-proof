@@ -21,12 +21,6 @@ def registers_list(request):
     })
 
 
-# def register_by_city(request, city_name):
-#     cities = Register.objects.filter(city=city_name)
-#     return render(request, 'proof/cities_list.html', {
-#         'cities': cities
-#     })
-
 def register_detail(request, pk):
     register = get_object_or_404(Register, pk=pk)
     return render(request, 'proof/register_detail.html', {'register': register})
@@ -38,7 +32,7 @@ def register_new(request):
         if form.is_valid():
             register = form.save(commit=False)
             register.save()
-            return redirect('register_detail', pk=register.pk)
+            return redirect('proof:register_detail', pk=register.pk)
     else:
         form = RegisterForm()
     return render(request, 'proof/register_edit.html', {'form': form})
@@ -51,7 +45,7 @@ def register_edit(request, pk):
         if form.is_valid():
             register = form.save(commit=False)
             register.save()
-            return redirect('register_detail', pk=register.pk)
+            return redirect('proof:register_detail', pk=register.pk)
     else:
         form = RegisterForm(instance=register)
     return render(request, 'proof/register_edit.html', {'form': form})
@@ -64,6 +58,12 @@ def register_delete(request, pk):
         'msg': f'El registro con id {pk} fue eleminado.'
     })
 
+
+# def register_by_city(request, city_name):
+#     cities = Register.objects.filter(city=city_name)
+#     return render(request, 'proof/cities_list.html', {
+#         'cities': cities
+#     })
 
 class RegisterViewSet(viewsets.ModelViewSet):
 
