@@ -11,6 +11,8 @@ from rest_framework.response import Response
 # Clase 'RegisterSerializer'
 from .serializers import RegisterSerializer
 
+from django.db.models import Count
+
 # Create your views here.
 
 
@@ -30,9 +32,18 @@ def register_new(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
-            register = form.save(commit=False)
-            register.save()
-            return redirect('proof:register_detail', pk=register.pk)
+            count_of_cities = Register.objects.filter(
+                city__iexact=form.cleaned_data["city"]).count()
+            if count_of_cities < 3:
+                register = form.save(commit=False)
+                register.save()
+                return redirect('proof:register_detail', pk=register.pk)
+            else:
+                return render(request, 'proof/filter_cities_list.html', {
+                    "cities": form.cleaned_data["city"],
+                    "msg": f'La ciudad {form.cleaned_data["city"]} ya ha sido registrada 3 veces.',
+                    "count": count_of_cities
+                })
     else:
         form = RegisterForm()
     return render(request, 'proof/register_edit.html', {'form': form})
@@ -59,11 +70,31 @@ def register_delete(request, pk):
     })
 
 
-# def register_by_city(request, city_name):
-#     cities = Register.objects.filter(city=city_name)
-#     return render(request, 'proof/cities_list.html', {
-#         'cities': cities
-#     })
+def register_filter_by_city(request, city):
+    # cities = Register.objects.filter(city__iexact=city)
+    count = Register.objects.filter(city__iexact=city).count()
+    if count < 3:
+        msg = f'Se puede registrar {3 - count} veces más esta ciudad.'
+    else:
+        msg = "No se puede registrar más veces esta ciudad."
+    return render(request, 'proof/filter_cities_list.html', {
+        'city': city,
+        'count': count,
+        'msg': msg,
+    })
+
+
+def register_all_cities(request):
+    list_cities = Register.objects.select_related(
+        'city').values('id', 'city', 'first_name').order_by('city')
+
+    quantity_of_cities = list_cities.values('city').annotate(
+        amount=Count('city')).order_by('-amount')
+    return render(request, 'proof/cities_list.html', {
+        # 'list_cities': list_cities,
+        'quantity_of_cities': quantity_of_cities
+    })
+
 
 class RegisterViewSet(viewsets.ModelViewSet):
 

@@ -16,4 +16,10 @@ urlpatterns = [
     # ex: /proof/register/1/delete
     path('register/<int:pk>/delete/',
          views.register_delete, name='register_delete'),
+    # ex: /proof/cities/bogota
+    path('cities/<str:city>', views.register_filter_by_city,
+         name='register_filter_by_city'),
+    # ex: /proof/cities/
+    path('cities/', views.register_all_cities,
+         name='register_all_cities'),
 ]
