@@ -6,14 +6,18 @@
 <dir class="w-full p-1">
   <div class="w-full p-4 bg-blue-50 rounded-xl">
     <a
-      href="{% url 'register_detail' pk=register.pk %}"
+      href="{% url 'proof:register_detail' pk=register.pk %}"
       class="px-4 py-1 bg-blue-200 rounded-md hover:bg-blue-300"
       >Identificador: {{ register.id }}</a
     >
     <p>Nombre: {{ register.first_name }}</p>
     <p>Apellido: {{ register.last_name }}</p>
     <p>Email: {{ register.email }}</p>
-    <p>Ciudad: {{ register.city }}</p>
+    <a
+      href="{% url 'proof:register_filter_by_city' city=register.city %}"
+      class="px-4 py-1 bg-green-300 rounded-md hover:bg-green-400"
+      >City: {{ register.city }}</a
+    >
   </div>
 </dir>
 {% endfor %} {% endblock %}

@@ -1,3 +1,4 @@
+from datetime import date
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -15,6 +16,7 @@ class Register(models.Model):
     department: str = models.CharField(max_length=200)
     city: str = models.CharField(max_length=200)
     comments: str = models.TextField()
+    date_of_birth = models.DateField(default=date.today)
     created_date = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
