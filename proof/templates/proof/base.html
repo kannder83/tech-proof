@@ -23,6 +23,11 @@
           class="px-4 py-2 bg-yellow-200 rounded-xl hover:shadow-md hover:bg-yellow-300"
           ><span class="">➕</span> Nuevo Registro</a
         >
+        <a
+        href="{% url 'proof:register_all_cities' %}"
+        class="px-4 py-2 bg-yellow-200 rounded-xl hover:shadow-md hover:bg-yellow-300"
+        ><span class="">🏙</span> Tabla de Ciudades</a
+      >
       </div>
     </div>
     <div class="w-full">{% block content %} {% endblock %}</div>

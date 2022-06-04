@@ -1,3 +1,4 @@
+from datetime import date
 from django.shortcuts import get_object_or_404, redirect, render
 from .models import Register
 from .forms import RegisterForm
@@ -34,15 +35,21 @@ def register_new(request):
         if form.is_valid():
             count_of_cities = Register.objects.filter(
                 city__iexact=form.cleaned_data["city"]).count()
+
+            legal_age = date.today() - form.cleaned_data["date_of_birth"]
+
+            if legal_age.days < 365*17:
+                return render(request, 'proof/msg.html', {
+                    "msg": "No es mayor de edad"
+                })
+
             if count_of_cities < 3:
                 register = form.save(commit=False)
                 register.save()
                 return redirect('proof:register_detail', pk=register.pk)
             else:
-                return render(request, 'proof/filter_cities_list.html', {
-                    "cities": form.cleaned_data["city"],
-                    "msg": f'La ciudad {form.cleaned_data["city"]} ya ha sido registrada 3 veces.',
-                    "count": count_of_cities
+                return render(request, 'proof/msg.html', {
+                    "msg": f'La ciudad {form.cleaned_data["city"]} ya ha sido registrada 3 veces.'
                 })
     else:
         form = RegisterForm()
@@ -71,7 +78,6 @@ def register_delete(request, pk):
 
 
 def register_filter_by_city(request, city):
-    # cities = Register.objects.filter(city__iexact=city)
     count = Register.objects.filter(city__iexact=city).count()
     if count < 3:
         msg = f'Se puede registrar {3 - count} veces más esta ciudad.'
@@ -91,7 +97,6 @@ def register_all_cities(request):
     quantity_of_cities = list_cities.values('city').annotate(
         amount=Count('city')).order_by('-amount')
     return render(request, 'proof/cities_list.html', {
-        # 'list_cities': list_cities,
         'quantity_of_cities': quantity_of_cities
     })
 

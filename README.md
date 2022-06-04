@@ -48,9 +48,15 @@ Correr los siguientes comandos:
 
 Al ingresar al contenedor ejecutar:
 
+- Hacer la migración de los modelos y creación de tablas:
+
 `python manage.py makemigrations`
 
 `python manage.py migrate`
+
+- Luego crear el super usuario, seguir las instrucciones:
+
+`python manage.py createsuperuser`
 
 ## Aplicación:
 
