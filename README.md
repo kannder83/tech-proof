@@ -62,15 +62,23 @@ Al ingresar al contenedor ejecutar:
 
 Ingresar al localhost:
 
-[http://localhost:8000/](http://localhost:8000/)
+[http://localhost:8000/](http://localhost:8000/proof)
 
 En la página de inicio se tiene la opcion para visualizar cada uno de los registros.
 
 Se tiene la opción de crear un nuevo registro.
 
-[Nuevo Registro](http://localhost:8000/register/new)
+[Nuevo Registro](http://localhost:8000/proof/register/new)
 
 Se puede seleccionar un registro para entrar a la vista de detalle.
+
+### Superadmin:
+
+Para ingresar al super admin:
+
+[Super Admin](http://localhost:8000/admin)
+
+- No olvidar crear el acceso para acceder.
 
 ### Detalle:
 
