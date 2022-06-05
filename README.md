@@ -11,7 +11,7 @@ Tener Python y Docker instalado.
 
 ## Preparación:
 
-Correr Entorno Virutal:
+Correr Entorno Virtuals:
 
 `python3 -m venv venv`
 
@@ -26,11 +26,12 @@ SECRET_KEY=django-insecure-7*-ow8t@iau7%%9s!*wou_eg&p5(e(9m4v9$\_eiw9iguni@zny
 POSTGRES_HOST_AUTH_METHOD=trust
 POSTGRESQL_NAME=postgres
 POSTGRESQL_USER=postgres
-POSTGRESQL_PASS=postgres123
+POSTGRESQL_PASS=postgresDb809*
 POSTGRESQL_HOST=postgres
 POSTGRESQL_PORT=5432
 DEBUG=True
-ALLOWED_HOSTS=localhost
+ALLOWED_HOSTS=
+CSRF_TRUSTED_ORIGINS=
 ```
 
 ## Docker
@@ -63,13 +64,13 @@ Al ingresar al contenedor ejecutar:
 
 Ingresar al localhost:
 
-[http://localhost:8000/](http://localhost:8000/proof)
+[http://localhost:8000/](http://localhost:8000/)
 
 En la página de inicio se tiene la opcion para visualizar cada uno de los registros.
 
 Se tiene la opción de crear un nuevo registro.
 
-[Nuevo Registro](http://localhost:8000/proof/register/new)
+[Nuevo Registro](http://localhost:8000/register/new)
 
 Se puede seleccionar un registro para entrar a la vista de detalle.
 
