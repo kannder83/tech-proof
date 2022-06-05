@@ -7,6 +7,7 @@ Tener Python y Docker instalado.
 - Python
 - Docker
 - Framework django
+- Django Rest Framework
 - PostgresSQL
 
 ## Preparación:
@@ -55,6 +56,8 @@ Al ingresar al contenedor ejecutar:
 `python manage.py makemigrations`
 
 `python manage.py migrate`
+
+`python manage.py collectstatic`
 
 - Luego crear el super usuario, seguir las instrucciones:
 
