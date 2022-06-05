@@ -30,6 +30,7 @@ POSTGRESQL_PASS=postgres123
 POSTGRESQL_HOST=postgres
 POSTGRESQL_PORT=5432
 DEBUG=True
+ALLOWED_HOSTS=localhost
 ```
 
 ## Docker

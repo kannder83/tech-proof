@@ -23,7 +23,7 @@ router = DefaultRouter()
 router.register('proof', proof_views.RegisterViewSet, basename='proof')
 
 urlpatterns = [
-    path('tech-proof/admin/', admin.site.urls),
-    path('tech-proof/proof/', include('proof.urls')),
-    path('tech-proof/api/', include(router.urls)),
+    path('admin/', admin.site.urls),
+    path('', include('proof.urls')),
+    path('api/', include(router.urls)),
 ]
